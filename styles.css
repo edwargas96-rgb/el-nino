@@ -310,3 +310,37 @@ section { padding: 60px 0; }
   .grid-4, .grid-dados { grid-template-columns: 1fr; }
   section { padding: 44px 0; }
 }
+
+/* Rotating urgency toast */
+.social-toast {
+  position: fixed;
+  left: 20px;
+  bottom: 20px;
+  max-width: 300px;
+  background: var(--color-hero-bg);
+  color: #fff;
+  border-left: 4px solid var(--color-accent);
+  border-radius: 8px;
+  padding: 14px 18px;
+  font-size: 0.9rem;
+  box-shadow: var(--shadow);
+  transform: translateY(20px);
+  opacity: 0;
+  pointer-events: none;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+  z-index: 60;
+}
+
+.social-toast.is-visible {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+@media (max-width: 640px) {
+  .social-toast {
+    left: 16px;
+    right: 16px;
+    max-width: none;
+    bottom: 16px;
+  }
+}
