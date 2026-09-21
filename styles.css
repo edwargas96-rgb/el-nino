@@ -1,18 +1,23 @@
 :root {
-  --color-bg: #F3EDE0;
+  --color-bg: #F2EDE2;
   --color-bg-alt: #EAE1CC;
-  --color-text: #201A17;
+  --color-text: #241C15;
   --color-text-soft: #4A423C;
-  --color-primary: #3A4A2E;
+  --color-primary: #47572E;
   --color-primary-dark: #2A3521;
   --color-earth: #6B4423;
+  --color-seca: #C1622B;
+  --color-seca-dark: #9C4E22;
+  --color-chuva: #3D5A6C;
+  --color-chuva-dark: #2E4553;
   --color-accent: #C81E1E;
   --color-accent-dark: #9E1717;
-  --color-urgent: #E63A1E;
+  --color-urgent: #B23325;
   --color-hero-bg: #150C0B;
   --color-card-bg: #FFFFFF;
-  --font-display: 'Anton', sans-serif;
+  --font-display: 'Big Shoulders Display', sans-serif;
   --font-body: 'Inter', sans-serif;
+  --font-mono: 'IBM Plex Mono', monospace;
   --radius: 10px;
   --shadow: 0 8px 24px rgba(21, 12, 11, 0.12);
 }
@@ -52,10 +57,11 @@ img, svg {
 
 h1, h2, h3 {
   font-family: var(--font-display);
+  font-weight: 800;
   text-transform: uppercase;
   color: var(--color-primary-dark);
-  line-height: 1.1;
-  letter-spacing: 0.01em;
+  line-height: 1.05;
+  letter-spacing: 0;
   margin: 0 0 16px;
 }
 
@@ -187,12 +193,33 @@ h3 { font-size: 1.05rem; }
 /* Sections */
 section { padding: 60px 0; }
 
-.dados {
-  background: var(--color-hero-bg);
-  border-bottom: 4px solid var(--color-accent);
+/* Signature device: the seca/chuva divider that marks section transitions */
+.split-bar {
+  height: 5px;
+  background: linear-gradient(to right, var(--color-seca) 0%, var(--color-seca) 50%, var(--color-chuva) 50%, var(--color-chuva) 100%);
 }
 
-.dados h2 { color: #fff; }
+.dados {
+  background: var(--color-bg);
+}
+
+.dados h2 { color: var(--color-primary-dark); }
+
+.bulletin-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-mono);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: var(--color-text-soft);
+  border: 1px solid var(--color-text-soft);
+  border-radius: 4px;
+  padding: 4px 10px;
+  margin-bottom: 16px;
+}
 
 .grid-dados {
   display: grid;
@@ -202,24 +229,85 @@ section { padding: 60px 0; }
 }
 
 .stat-card {
-  background: rgba(255,255,255,0.04);
-  border: 1px solid rgba(230, 58, 30, 0.35);
-  border-radius: var(--radius);
-  padding: 22px;
+  background: var(--color-card-bg);
+  border: 1px solid rgba(36, 28, 21, 0.12);
+  border-left: 3px solid var(--color-earth);
+  border-radius: 4px;
+  padding: 20px;
 }
+
+.stat-card--seca { border-left-color: var(--color-seca); }
+.stat-card--chuva { border-left-color: var(--color-chuva); }
+
+.stat-label {
+  display: block;
+  font-family: var(--font-mono);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  font-size: 0.7rem;
+  font-weight: 600;
+  color: var(--color-text-soft);
+  margin-bottom: 8px;
+}
+
+.stat-card--seca .stat-label { color: var(--color-seca-dark); }
+.stat-card--chuva .stat-label { color: var(--color-chuva-dark); }
 
 .stat-num {
   display: block;
   font-family: var(--font-display);
+  font-weight: 800;
   text-transform: uppercase;
-  color: var(--color-urgent);
-  font-size: 1.1rem;
+  color: var(--color-primary-dark);
+  font-size: 1.15rem;
+  margin-bottom: 8px;
+  line-height: 1.1;
+}
+
+.stat-card p { color: var(--color-text-soft); margin: 0; font-size: 0.92rem; }
+
+.dor { background: var(--color-bg-alt); }
+
+/* Seca/chuva comparison panel — the recurring structural device */
+.dual-panel {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2px;
+  margin-top: 28px;
+  border-radius: var(--radius);
+  overflow: hidden;
+  box-shadow: var(--shadow);
+}
+
+.dual-panel--tight { margin-top: 24px; margin-bottom: 8px; }
+
+.dual-col {
+  background: var(--color-card-bg);
+  padding: 22px 20px;
+  border-top: 4px solid transparent;
+}
+
+.dual-col--seca { border-top-color: var(--color-seca); }
+.dual-col--chuva { border-top-color: var(--color-chuva); }
+
+.dual-label {
+  display: block;
+  font-family: var(--font-mono);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  font-size: 0.72rem;
+  font-weight: 600;
   margin-bottom: 10px;
 }
 
-.stat-card p { color: rgba(255,255,255,0.78); margin: 0; font-size: 0.95rem; }
+.dual-col--seca .dual-label { color: var(--color-seca-dark); }
+.dual-col--chuva .dual-label { color: var(--color-chuva-dark); }
 
-.dor { background: var(--color-bg-alt); }
+.dual-col p { margin: 0; color: var(--color-text-soft); font-size: 0.95rem; }
+
+@media (max-width: 560px) {
+  .dual-panel { grid-template-columns: 1fr; }
+}
 
 .grid-4 {
   display: grid;
@@ -238,6 +326,11 @@ section { padding: 60px 0; }
 
 .card h3 { color: var(--color-earth); }
 .card p { color: var(--color-text-soft); margin: 0; }
+
+.card--seca { border-top-color: var(--color-seca); }
+.card--seca h3 { color: var(--color-seca-dark); }
+.card--chuva { border-top-color: var(--color-chuva); }
+.card--chuva h3 { color: var(--color-chuva-dark); }
 
 .solucao { background: var(--color-bg); }
 
@@ -397,11 +490,11 @@ section { padding: 60px 0; }
 
 .price-new {
   display: block;
-  font-family: var(--font-display);
-  text-transform: uppercase;
+  font-family: var(--font-mono);
+  font-weight: 600;
   color: var(--color-accent);
-  font-size: 2.2rem;
-  letter-spacing: 0.02em;
+  font-size: 2.1rem;
+  letter-spacing: 0;
 }
 
 .price-badge {
@@ -441,8 +534,9 @@ section { padding: 60px 0; }
 }
 
 .coupon-code {
-  font-family: var(--font-display);
-  letter-spacing: 0.08em;
+  font-family: var(--font-mono);
+  font-weight: 600;
+  letter-spacing: 0.04em;
   color: var(--color-primary-dark);
   font-size: 0.85rem;
 }
@@ -495,10 +589,11 @@ section { padding: 60px 0; }
 }
 
 .timer {
-  font-family: var(--font-display);
-  font-size: 2.6rem;
+  font-family: var(--font-mono);
+  font-weight: 600;
+  font-size: 2.4rem;
   color: #fff;
-  letter-spacing: 0.06em;
+  letter-spacing: 0.02em;
 }
 
 .urgencia-sub {

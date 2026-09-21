@@ -7,7 +7,7 @@
 <meta name="description" content="Safra Blindada: guia prático de manejo orgânico para se preparar contra seca e excesso de chuva, em qualquer região do Brasil.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@600;700;800;900&family=Inter:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="styles.css">
 </head>
 <body>
@@ -34,38 +34,56 @@
   </div>
 </header>
 
+<div class="split-bar" aria-hidden="true"></div>
+
 <section class="dados">
   <div class="container narrow">
-    <p class="kicker urgente">O contexto</p>
+    <div class="bulletin-tag">Boletim · Referência histórica</div>
     <h2>Por que isso importa agora</h2>
-    <p class="lead" style="color: rgba(255,255,255,0.8); margin-bottom: 24px;">O El Niño de 2023/2024 foi classificado por institutos meteorológicos internacionais como um dos episódios mais intensos já registrados, e deixou consequências concretas no campo:</p>
+    <p class="lead" style="margin-bottom: 24px;">O El Niño de 2023/2024 foi classificado por institutos meteorológicos internacionais como um dos episódios mais intensos já registrados, e deixou consequências concretas no campo:</p>
     <div class="grid-dados">
       <div class="stat-card">
-        <span class="stat-num">Um dos mais fortes</span>
-        <p>Um dos episódios de El Niño mais intensos desde que o fenômeno passou a ser medido, segundo institutos meteorológicos internacionais.</p>
+        <span class="stat-label">Intensidade</span>
+        <span class="stat-num">Um dos mais fortes já registrados</span>
+        <p>Segundo institutos meteorológicos internacionais, desde que o fenômeno passou a ser medido.</p>
       </div>
-      <div class="stat-card">
+      <div class="stat-card stat-card--seca">
+        <span class="stat-label">Seca · Norte</span>
         <span class="stat-num">Nível histórico mais baixo</span>
         <p>O Rio Negro, em Manaus, atingiu em outubro de 2023 o menor nível já registrado, no auge da seca amazônica.</p>
       </div>
       <div class="stat-card">
+        <span class="stat-label">Temperatura</span>
         <span class="stat-num">Recorde global de calor</span>
-        <p>2023 e 2024 registraram as temperaturas médias globais mais altas já medidas, segundo a Organização Meteorológica Mundial.</p>
+        <p>2023 e 2024 registraram as temperaturas médias globais mais altas já medidas, segundo a OMM.</p>
       </div>
-      <div class="stat-card">
-        <span class="stat-num">Chuva muito acima da média</span>
-        <p>Enquanto o Norte e o Nordeste secavam, regiões do Sul enfrentaram volumes de chuva muito acima da média histórica no mesmo período.</p>
+      <div class="stat-card stat-card--chuva">
+        <span class="stat-label">Chuva · Sul</span>
+        <span class="stat-num">Muito acima da média</span>
+        <p>Enquanto o Norte e o Nordeste secavam, o Sul teve volumes de chuva muito acima da média histórica.</p>
       </div>
     </div>
-    <p class="lead" style="color: rgba(255,255,255,0.8); margin-top: 24px;">Episódios de El Niño se repetem com certa frequência, com intensidade variável a cada ciclo. Estar com o manejo organizado antes do próximo período crítico reduz vulnerabilidades que, na prática, custam caro.</p>
+    <p class="lead" style="margin-top: 24px;">Episódios de El Niño se repetem com certa frequência, com intensidade variável a cada ciclo. Estar com o manejo organizado antes do próximo período crítico reduz vulnerabilidades que, na prática, custam caro.</p>
   </div>
 </section>
+
+<div class="split-bar" aria-hidden="true"></div>
 
 <section class="dor">
   <div class="container narrow">
     <h2>Para quem é o Safra Blindada</h2>
-    <p class="lead">Pra você que produz de forma orgânica e sente na pele o efeito do clima na lavoura: seja a seca prolongada do Norte/Nordeste, ou o excesso de chuva que castiga o Sul. Pequeno e médio produtor, sem estrutura de irrigação de alto custo ou insumo químico como atalho.</p>
-    <p class="lead"><strong>Se você já perdeu produtividade por estiagem ou encharcamento em safras anteriores, esse material foi pensado pra sua realidade.</strong></p>
+    <p class="lead">Pequeno e médio produtor orgânico, sem estrutura de irrigação de alto custo ou insumo químico como atalho. Se você já perdeu produtividade por estiagem ou encharcamento em safras anteriores, esse material foi pensado pra sua realidade.</p>
+
+    <div class="dual-panel">
+      <div class="dual-col dual-col--seca">
+        <span class="dual-label">Seca · Norte / Nordeste</span>
+        <p>Terra rachando, lavoura murchando semana após semana de estiagem.</p>
+      </div>
+      <div class="dual-col dual-col--chuva">
+        <span class="dual-label">Chuva excessiva · Sul</span>
+        <p>Solo encharcado, raiz apodrecendo, chuva que não dá trégua.</p>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -128,10 +146,20 @@
 <section class="beneficios">
   <div class="container narrow">
     <h2>O que você vai aprender a fazer</h2>
+
+    <div class="dual-panel dual-panel--tight">
+      <div class="dual-col dual-col--seca">
+        <span class="dual-label">Cenário seca</span>
+        <p>Reter água, reduzir evaporação e organizar o manejo pra estiagem prolongada.</p>
+      </div>
+      <div class="dual-col dual-col--chuva">
+        <span class="dual-label">Cenário chuva</span>
+        <p>Escoar excesso, proteger a raiz e organizar o manejo pra solo encharcado.</p>
+      </div>
+    </div>
+
     <ul class="check-list">
       <li>Reconhecer sinais de déficit hídrico e de saturação/drenagem insuficiente no solo</li>
-      <li>Organizar ações específicas de manejo pra cenário de seca</li>
-      <li>Organizar ações específicas de manejo pra cenário de excesso de chuva</li>
       <li>Montar um plano de ação de 5 semanas adaptado à sua propriedade</li>
       <li>Calcular o prejuízo estimado de não agir, pra decidir com clareza onde investir primeiro</li>
       <li>Usar checklists de campo pra acompanhar e registrar decisões e resultados</li>
@@ -145,11 +173,11 @@
     <p class="kicker center">O que vem incluído</p>
     <h2 class="center">Ferramentas prontas pra usar, não só teoria</h2>
     <div class="grid-4 bonus-grid">
-      <div class="card">
+      <div class="card card--seca">
         <h3>Checklist — Seca</h3>
         <p>Lista de verificação rápida pra manejo em cenário de estiagem.</p>
       </div>
-      <div class="card">
+      <div class="card card--chuva">
         <h3>Checklist — Chuva excessiva</h3>
         <p>Lista de verificação rápida pra manejo em solo encharcado.</p>
       </div>
@@ -188,6 +216,8 @@
     <p class="lead">O conteúdo reúne princípios de manejo orgânico de solo e água amplamente reconhecidos, organizados de forma prática pra aplicação direta na propriedade. As informações climáticas citadas se baseiam em dados públicos de institutos como INMET, Embrapa, CPTEC/INPE e o Zoneamento Agrícola de Risco Climático do Ministério da Agricultura. Este material é educativo e não substitui a orientação de um engenheiro agrônomo pra decisões específicas da sua propriedade.</p>
   </div>
 </section>
+
+<div class="split-bar" aria-hidden="true"></div>
 
 <section class="oferta" id="oferta">
   <div class="container narrow">
