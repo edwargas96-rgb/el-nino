@@ -63,22 +63,21 @@
   document.body.appendChild(toast);
 
   var textEl = toast.querySelector('.purchase-toast-text');
-  var order = [];
   var hideTimeout = null;
   var nextTimeout = null;
+  var lastIndex = -1;
 
-  function shuffledQueue() {
-    var arr = MESSAGES.slice();
-    for (var i = arr.length - 1; i > 0; i--) {
-      var j = Math.floor(Math.random() * (i + 1));
-      var tmp = arr[i]; arr[i] = arr[j]; arr[j] = tmp;
-    }
-    return arr;
+  function randomMessage() {
+    var index;
+    do {
+      index = Math.floor(Math.random() * MESSAGES.length);
+    } while (index === lastIndex && MESSAGES.length > 1);
+    lastIndex = index;
+    return MESSAGES[index];
   }
 
   function showNext() {
-    if (order.length === 0) order = shuffledQueue();
-    textEl.textContent = order.shift();
+    textEl.textContent = randomMessage();
     toast.classList.add('is-visible');
 
     var visibleMs = randomBetween(MIN_VISIBLE_MS, MAX_VISIBLE_MS);
