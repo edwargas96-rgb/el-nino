@@ -124,12 +124,40 @@ h3 { font-size: 1.05rem; }
 
 /* Hero: breaking-news alert style */
 .hero {
-  padding: 64px 0 56px;
+  padding: 56px 0;
   background:
     radial-gradient(circle at 20% 15%, rgba(230, 58, 30, 0.22), transparent 45%),
     radial-gradient(circle at 85% 85%, rgba(200, 30, 30, 0.18), transparent 50%),
     var(--color-hero-bg);
   border-bottom: 4px solid var(--color-accent);
+}
+
+.hero-grid {
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: 40px;
+  align-items: center;
+}
+
+.hero-media img {
+  border-radius: 14px;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4);
+}
+
+.hero-copy .microcopy {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.hero-price {
+  margin: 20px 0 24px;
+}
+
+.hero-price .price-old {
+  color: rgba(255, 255, 255, 0.55);
+}
+
+.hero-price .price-new {
+  color: #fff;
 }
 
 .alert-tag {
@@ -145,11 +173,15 @@ h3 { font-size: 1.05rem; }
   margin-bottom: 20px;
 }
 
-.scroll-hint {
-  color: rgba(255,255,255,0.65);
-  font-size: 0.9rem;
-  margin-top: 8px;
-  letter-spacing: 0.03em;
+@media (max-width: 860px) {
+  .hero-grid {
+    grid-template-columns: 1fr;
+  }
+  .hero-media {
+    order: -1;
+    max-width: 320px;
+    margin: 0 auto;
+  }
 }
 
 /* Sections */
@@ -207,11 +239,35 @@ section { padding: 60px 0; }
 .card h3 { color: var(--color-earth); }
 .card p { color: var(--color-text-soft); margin: 0; }
 
-.virada { background: var(--color-primary-dark); color: #fff; }
-.virada h2 { color: #fff; }
-.virada .lead { color: rgba(255,255,255,0.85); }
-
 .solucao { background: var(--color-bg); }
+
+.produto { background: var(--color-bg-alt); }
+
+.produto-media {
+  margin: 28px 0;
+  text-align: center;
+}
+
+.produto-media img {
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+}
+
+.produto-specs { margin-top: 8px; }
+
+.bonus { background: var(--color-bg); }
+
+.bonus-grid .card { border-top-color: var(--color-primary); }
+.bonus-grid .card h3 { color: var(--color-primary-dark); }
+
+.tecnica {
+  background: var(--color-bg-alt);
+}
+
+.tecnica .lead {
+  max-width: 100%;
+  font-size: 0.95rem;
+}
 
 .check-list {
   list-style: none;
@@ -348,6 +404,26 @@ section { padding: 60px 0; }
   letter-spacing: 0.02em;
 }
 
+.price-badge {
+  display: inline-block;
+  background: var(--color-accent);
+  color: #fff;
+  font-family: var(--font-display);
+  text-transform: uppercase;
+  font-size: 0.8rem;
+  padding: 4px 12px;
+  border-radius: 999px;
+  margin-top: 8px;
+}
+
+.price-save {
+  display: block;
+  color: var(--color-primary);
+  font-weight: 700;
+  font-size: 0.9rem;
+  margin-top: 6px;
+}
+
 .coupon {
   display: inline-flex;
   align-items: center;
@@ -454,6 +530,24 @@ section { padding: 60px 0; }
   color: rgba(255,255,255,0.55);
   padding: 28px 0;
   font-size: 0.85rem;
+}
+
+/* Accessibility: visible focus state on interactive elements */
+a:focus-visible,
+button:focus-visible {
+  outline: 3px solid var(--color-urgent);
+  outline-offset: 2px;
+}
+
+/* Respect reduced-motion preference */
+@media (prefers-reduced-motion: reduce) {
+  .btn,
+  .purchase-toast {
+    transition: none !important;
+  }
+  .btn:hover {
+    transform: none;
+  }
 }
 
 @media (max-width: 640px) {
