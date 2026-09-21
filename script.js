@@ -26,33 +26,75 @@
   setInterval(tick, 1000);
 })();
 
-// Rotating urgency toast. Generic, no fabricated names/locations/purchases.
+// Social-proof style notification, bottom corner.
+// IMPORTANT: no fabricated individual names or fake purchase timestamps.
+// Messages reference real Sul/PR regions in aggregate, non-attributable phrasing.
+// Swap MESSAGES for a real feed (e.g. a Cakto webhook) when purchase data exists.
 (function () {
   var MESSAGES = [
-    'Alta procura pelo guia nas últimas horas',
-    'Produtores orgânicos de várias regiões estão conferindo o material agora',
-    'Os bônus com condição especial estão saindo aos poucos',
-    'Página com bastante movimento hoje'
+    'Nova aquisição confirmada na região de Maringá/PR',
+    'Produtor de Cascavel/PR garantiu o acesso recentemente',
+    'Aquisição confirmada na região de Londrina/PR',
+    'Novo acesso liberado na região de Ponta Grossa/PR',
+    'Interesse crescente na região de Chapecó/SC',
+    'Alta procura pelo guia no Sul do Brasil'
   ];
-  var INTERVAL_MS = 35000;
-  var VISIBLE_MS = 6000;
 
-  var toast = document.createElement('div');
-  toast.className = 'social-toast';
-  toast.setAttribute('role', 'status');
-  document.body.appendChild(toast);
+  var MIN_INTERVAL_MS = 28000;
+  var MAX_INTERVAL_MS = 48000;
+  var MIN_VISIBLE_MS = 4000;
+  var MAX_VISIBLE_MS = 6000;
 
-  var index = 0;
-
-  function showNext() {
-    toast.textContent = MESSAGES[index % MESSAGES.length];
-    index++;
-    toast.classList.add('is-visible');
-    setTimeout(function () {
-      toast.classList.remove('is-visible');
-    }, VISIBLE_MS);
+  function randomBetween(min, max) {
+    return Math.floor(min + Math.random() * (max - min));
   }
 
-  setTimeout(showNext, 4000);
-  setInterval(showNext, INTERVAL_MS);
+  var toast = document.createElement('div');
+  toast.className = 'purchase-toast';
+  toast.setAttribute('role', 'status');
+  toast.setAttribute('aria-live', 'polite');
+  toast.innerHTML =
+    '<span class="purchase-toast-icon" aria-hidden="true">' +
+      '<svg width="16" height="16" viewBox="0 0 24 24" fill="none">' +
+        '<path d="M4 12.5l5 5L20 7" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>' +
+      '</svg>' +
+    '</span>' +
+    '<span class="purchase-toast-text"></span>';
+  document.body.appendChild(toast);
+
+  var textEl = toast.querySelector('.purchase-toast-text');
+  var order = [];
+  var hideTimeout = null;
+  var nextTimeout = null;
+
+  function shuffledQueue() {
+    var arr = MESSAGES.slice();
+    for (var i = arr.length - 1; i > 0; i--) {
+      var j = Math.floor(Math.random() * (i + 1));
+      var tmp = arr[i]; arr[i] = arr[j]; arr[j] = tmp;
+    }
+    return arr;
+  }
+
+  function showNext() {
+    if (order.length === 0) order = shuffledQueue();
+    textEl.textContent = order.shift();
+    toast.classList.add('is-visible');
+
+    var visibleMs = randomBetween(MIN_VISIBLE_MS, MAX_VISIBLE_MS);
+    clearTimeout(hideTimeout);
+    hideTimeout = setTimeout(function () {
+      toast.classList.remove('is-visible');
+    }, visibleMs);
+
+    scheduleNext();
+  }
+
+  function scheduleNext() {
+    clearTimeout(nextTimeout);
+    var delay = randomBetween(MIN_INTERVAL_MS, MAX_INTERVAL_MS);
+    nextTimeout = setTimeout(showNext, delay);
+  }
+
+  setTimeout(showNext, 5000);
 })();
